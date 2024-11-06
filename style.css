@@ -1,8 +1,19 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+/* Definições gerais */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg, #6a11cb, #2575fc);
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
 .container {
@@ -11,61 +22,66 @@ body {
     overflow: hidden;
 }
 
-form {
-    background: #fff;
+/* Estilo do cabeçalho */
+.header {
+    text-align: center;
     padding: 20px;
-    margin: 20px 0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-form label {
-    display: block;
-    margin: 5px 0;
-}
-
-form input[type="text"],
-form input[type="date"],
-form input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0 20px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-form input[type="submit"] {
-    display: block;
-    background: #5a67d8;
+h1 {
     color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    font-size: 2.5em;
+    margin-bottom: 10px;
 }
 
-form input[type="submit"]:hover {
-    background: #434190;
+.subtitle {
+    color: #d1d5db;
+    font-size: 1.1em;
+    margin-top: 10px;
+    opacity: 0.85;
 }
+
+/* Estilo do menu de botões */
 .menu {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 .button {
     display: inline-block;
-    padding: 15px 25px;
-    background-color: #5a67d8;
-    color: #fff;
+    padding: 15px 30px;
+    background-color: #fff;
+    color: #5a67d8;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 8px;
     text-align: center;
     font-size: 16px;
-    transition: background-color 0.3s;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .button:hover {
-    background-color: #434190;
+    background-color: #e0e7ff;
+    color: #434190;
+    transform: translateY(-5px);
+}
+
+.view {
+    background-color: #f56565;
+    color: #fff;
+}
+
+.view:hover {
+    background-color: #e53e3e;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+    }
 }

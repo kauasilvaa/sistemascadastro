@@ -25,5 +25,22 @@ class Estoque {
         $stmt = $this->conn->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function atualizarProduto($id, $nome_produto, $categoria, $data_entrada, $data_saida)
+    {
+        $sql = "UPDATE estoque SET nome_produto = ?, categoria = ?, data_entrada = ?, data_saida = ? WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$nome_produto, $categoria, $data_entrada, $data_saida, $id]);
+
+        return $stmt->rowCount();
+    }
+
+    public function deletarProduto($id)
+    {
+        $sql = "DELETE FROM estoque WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$id]);
+
+        return $stmt->rowCount();
+    }
 }
-?>

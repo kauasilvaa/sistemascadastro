@@ -2,7 +2,7 @@
 require_once 'db.php';
 
 
-class Financeiro {
+class Financeiros {
     private $conn;
     private $table_name = "financeiros"; // Alteração do nome da tabela
 
@@ -21,20 +21,20 @@ class Financeiro {
     }
     
     public function listarFinanceiros() {
-        $sql = "SELECT * FROM financeiro";
+        $sql = "SELECT * FROM financeiros";
         $stmt = $this->conn->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);   
     }
 
-    public function atualizarFinanceiro($id, $nome_cliente, $cpf_cliente, $valor_total, $data_venda) {
-        $sql = "UPDATE financeiro SET nome_cliente = ?, cpf_cliente = ?, valor_total = ?, data_venda = ? WHERE id = ?";
+    public function atualizarFinanceiros($id, $nome_cliente, $cpf_cliente, $valor_total, $data_venda) {
+        $sql = "UPDATE financeiros SET nome_cliente = ?, cpf_cliente = ?, valor_total = ?, data_venda = ? WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$nome_cliente, $cpf_cliente, $valor_total, $data_venda, $id]);
         return $stmt->rowCount();
     }
 
     public function deletarFinanceiro($id) {
-        $sql = "DELETE FROM financeiro WHERE id = ?";
+        $sql = "DELETE FROM financeiros WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$id]);
         return $stmt->rowCount();

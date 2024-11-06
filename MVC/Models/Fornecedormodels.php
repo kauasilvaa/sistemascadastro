@@ -10,6 +10,7 @@ class Fornecedor {
         $this->conn = $database->getConnection();
     }
 
+    // Método para criar um novo fornecedor
     public function criarFornecedor($nome, $telefone, $email, $cnpj)
     {
         $sql = "INSERT INTO fornecedores (nome, telefone, email, cnpj) VALUES (?, ?, ?, ?)";
@@ -19,6 +20,7 @@ class Fornecedor {
         return $stmt->rowCount();
     }
 
+    // Método para listar todos os fornecedores
     public function listarTodos()
     {
         $sql = "SELECT * FROM " . $this->table_name;
@@ -26,22 +28,23 @@ class Fornecedor {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function atualizarFornecedor($id, $nome, $telefone, $email, $cnpj)
+    public function atualizarProduto($id, $nome_produto, $categoria, $data_entrada, $data_saida)
     {
-        $sql = "UPDATE fornecedores SET nome = ?, telefone = ?, email = ?, cnpj = ? WHERE id = ?";
+        $sql = "UPDATE estoque SET nome_produto = ?, categoria = ?, data_entrada = ?, data_saida = ? WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$nome, $telefone, $email, $cnpj, $id]);
-
+        $stmt->execute([$nome_produto, $categoria, $data_entrada, $data_saida, $id]);
+    
         return $stmt->rowCount();
     }
-
-    public function deletarFornecedor($id)
+    
+    public function deletarProduto($id)
     {
-        $sql = "DELETE FROM fornecedores WHERE id = ?";
+        $sql = "DELETE FROM estoque WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$id]);
-
+    
         return $stmt->rowCount();
     }
+    
 }
 ?>

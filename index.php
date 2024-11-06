@@ -2,35 +2,23 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Página Inicial</title>
-    <link rel="stylesheet" href="style.css"> <!-- Altere o caminho conforme necessário -->
+    <title>Página Inicial - Gestão</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Bem-vindo à Gestão</h1>
-    
-    <!-- Botão para cadastrar clientes -->
-    <a href="clientes.php"><button>Cadastrar Cliente</button></a>
-
-    <a href="estoque.php"><button>Cadastrar estoque</button></a>
-
-    <a href="financeiro.php"><button>Cadastrar financiero</button></a>
-
-    <!-- Botão para cadastrar fornecedores -->
-    <a href="fornecedores.php"><button>Cadastrar Fornecedor</button></a>
-
-    <!-- Botão para cadastrar funcionários -->
-    <a href="funcionarios.php"><button>Cadastrar Funcionário</button></a>
-
-    <!-- Botão para cadastrar processos -->
-    <a href="processos.php"><button>Cadastrar Processo</button></a>
-
-    <!-- Botão para listar processos -->
- 
-
-    <div>
-        <button onclick="window.location.href='listagens.php'">Ver Listagens de Cadastros</button>
+    <div class="header">
+        <h1>Bem-vindo à Gestão</h1>
+        <p class="subtitle">Gerencie clientes, estoque, finanças, fornecedores e muito mais de forma prática e eficiente</p>
     </div>
-    
-    <!-- Outros botões conforme necessário -->
+
+    <div class="menu">
+        <a href="clientes.php" class="button">Cadastrar Cliente</a>
+        <a href="estoque.php" class="button">Cadastrar Estoque</a>
+        <a href="financeiro.php" class="button">Cadastrar Financeiro</a>
+        <a href="fornecedores.php" class="button">Cadastrar Fornecedor</a>
+        <a href="funcionarios.php" class="button">Cadastrar Funcionário</a>
+        <a href="processos.php" class="button">Cadastrar Processo</a>
+        <a href="listagens.php" class="button view">Ver Listagens de Cadastros</a>
+    </div>
 </body>
 </html>

@@ -42,4 +42,8 @@ class ProcessoController {
         $resultado = $this->processoModel->deletarProcesso($id);
         return $resultado > 0 ? "Processo deletado com sucesso." : "Falha ao deletar o processo.";
     }
+    public function listarProcessoPorId($id) {
+        return $this->processoModel->buscarPorId($id);
+    }
+    
 }

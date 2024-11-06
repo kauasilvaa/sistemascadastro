@@ -19,5 +19,17 @@ class FornecedorController
     {
         return $this->fornecedorModel->listarTodos();
     }
+
+    // Novo método para atualizar fornecedor
+    public function atualizarFornecedor($id, $nome, $telefone, $email, $cnpj)
+    {
+        return $this->fornecedorModel->atualizarFornecedor($id, $nome, $telefone, $email, $cnpj);
+    }
+
+    // Novo método para deletar fornecedor
+    public function deletarFornecedor($id)
+    {
+        return $this->fornecedorModel->deletarFornecedor($id);
+    }
 }
 ?>

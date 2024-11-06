@@ -10,7 +10,7 @@ $processos = $processoController->listarProcessos();
 <head>
     <meta charset="UTF-8">
     <title>Lista de Processos</title>
-    <link rel="stylesheet" href="style.css"> <!-- Altere o caminho conforme necessário -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h2>Lista de Processos</h2>
@@ -21,6 +21,7 @@ $processos = $processoController->listarProcessos();
             <th>Quantidade</th>
             <th>Status</th>
             <th>Localização</th>
+            <th>Ações</th>
         </tr>
         <?php foreach ($processos as $processo): ?>
             <tr>
@@ -29,6 +30,13 @@ $processos = $processoController->listarProcessos();
                 <td><?= htmlspecialchars($processo['quantidade']) ?></td>
                 <td><?= htmlspecialchars($processo['status']) ?></td>
                 <td><?= htmlspecialchars($processo['localizacao']) ?></td>
+                <td>
+                    <form method="POST" action="processos.php">
+                        <input type="hidden" name="id" value="<?= $processo['id'] ?>">
+                        <input type="submit" name="edit" value="Editar">
+                        <input type="submit" name="delete" value="Excluir" onclick="return confirm('Tem certeza que deseja excluir este processo?');">
+                    </form>
+                </td>
             </tr>
         <?php endforeach; ?>
     </table>

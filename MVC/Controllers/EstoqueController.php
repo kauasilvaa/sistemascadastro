@@ -16,5 +16,15 @@ class EstoqueController {
     public function listarProdutos() {
         return $this->estoqueModel->listarTodos();
     }
+    public function atualizarProduto($id, $nome_produto, $categoria, $data_entrada, $data_saida)
+{
+    return $this->estoqueModel->atualizarProduto($id, $nome_produto, $categoria, $data_entrada, $data_saida);
+}
+
+public function deletarProduto($id)
+{
+    return $this->estoqueModel->deletarProduto($id);
+}
+
 }
 ?>

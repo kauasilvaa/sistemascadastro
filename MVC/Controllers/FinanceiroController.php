@@ -5,7 +5,7 @@ class FinanceiroController {
     private $financeiroModel;
 
     public function __construct() {
-        $this->financeiroModel = new Financeiro();
+        $this->financeiroModel = new Financeiros();
     }
 
         // Função para criar um novo registro financeiro
@@ -39,7 +39,7 @@ class FinanceiroController {
         public function atualizarFinanceiro($id, $nome_cliente, $cpf_cliente, $valor_total, $data_venda)
         {
             // Chama o método do model para atualizar o registro financeiro
-            $resultado = $this->financeiroModel->atualizarFinanceiro($id, $nome_cliente, $cpf_cliente, $valor_total, $data_venda);
+            $resultado = $this->financeiroModel->atualizarFinanceiros($id, $nome_cliente, $cpf_cliente, $valor_total, $data_venda);
             
             if ($resultado) {
                 echo "Registro financeiro atualizado com sucesso!";

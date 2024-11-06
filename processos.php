@@ -1,3 +1,39 @@
+<?php
+require_once 'MVC/Controllers/ProcessoController.php';
+
+$processoController = new ProcessoController();
+$resultado = "";
+
+// Verifica se é uma operação de edição ou exclusão
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['edit'])) {
+        // Carregar dados do processo para edição
+        $processo = $processoController->listarProcessos();
+        $processo = $processoController->listarProcessoPorId($_POST['id']); // Novo método para buscar pelo ID
+    } elseif (isset($_POST['delete'])) {
+        // Excluir o processo
+        $resultado = $processoController->deletarProcesso($_POST['id']);
+    } elseif (isset($_POST['update'])) {
+        // Atualizar o processo
+        $resultado = $processoController->atualizarProcesso(
+            $_POST['id'],
+            $_POST['data_inicio'],
+            $_POST['quantidade'],
+            $_POST['status'],
+            $_POST['localizacao']
+        );
+    } else {
+        // Criar novo processo
+        $resultado = $processoController->criarProcesso(
+            $_POST['data_inicio'],
+            $_POST['quantidade'],
+            $_POST['status'],
+            $_POST['localizacao']
+        );
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,41 +44,27 @@
 <body>
 <div class="container">
     <h1>Acompanhamento de Processos</h1>
-    <?php
-    // Exibir o resultado de criação (se houver)
-    if (isset($resultado)) {
-        echo "<p>$resultado</p>";
-    }
-    ?>
+    <?php if (!empty($resultado)): ?>
+        <p><?= $resultado ?></p>
+    <?php endif; ?>
+
     <form method="POST" action="processos.php">
+        <input type="hidden" name="id" value="<?= isset($processo['id']) ? $processo['id'] : '' ?>">
+
         <label>Data de Início:</label>
-        <input type="date" name="data_inicio" required>
+        <input type="date" name="data_inicio" value="<?= isset($processo['data_inicio']) ? $processo['data_inicio'] : '' ?>" required>
 
         <label>Quantidade:</label>
-        <input type="number" name="quantidade" required>
+        <input type="number" name="quantidade" value="<?= isset($processo['quantidade']) ? $processo['quantidade'] : '' ?>" required>
 
         <label>Status do Processo:</label>
-        <input type="text" name="status" required>
+        <input type="text" name="status" value="<?= isset($processo['status']) ? $processo['status'] : '' ?>" required>
 
         <label>Localização Atual:</label>
-        <input type="text" name="localizacao" required>
+        <input type="text" name="localizacao" value="<?= isset($processo['localizacao']) ? $processo['localizacao'] : '' ?>" required>
 
-        <input type="submit" value="Cadastrar">
+        <input type="submit" name="<?= isset($processo) ? 'update' : 'create' ?>" value="<?= isset($processo) ? 'Atualizar' : 'Cadastrar' ?>">
     </form>
 </div>
-
-<?php
-// Incluir o controller para processar o formulário
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    require_once 'MVC/Controllers/ProcessoController.php';
-    $data_inicio = $_POST['data_inicio'];
-    $quantidade = $_POST['quantidade'];
-    $status = $_POST['status'];
-    $localizacao = $_POST['localizacao'];
-
-    $processoController = new ProcessoController();
-    $resultado = $processoController->criarProcesso($data_inicio, $quantidade, $status, $localizacao);
-}
-?>
 </body>
 </html>
